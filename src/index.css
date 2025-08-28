@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.theme-nostalgic {
+  @apply bg-yellow-100 text-gray-800;
+}
+.theme-futuristic {
+  @apply bg-gradient-to-r from-blue-800 to-purple-700 text-white;
+}
+.theme-playful {
+  @apply bg-pink-100 text-pink-800;
+}
+.theme-minimal {
+  @apply bg-white text-black border;
+}
+.theme-dark {
+  @apply bg-gray-900 text-white;
+}
