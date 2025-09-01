@@ -32,7 +32,7 @@ function MyCapsules() {
     }, [currentUser]);
 
     if (loading) return <p className='text-center mt-10'>Loading your capsules...</p>
-    if (capsules.length === 0) return <p className='text-center mt-10'>You haven't created any capsules yet.</p>
+    if (capsules.length === 0) return <p className='text-center mt-10 font-kode font-bold text-emerald-700'>You haven't created any capsules yet.</p>
 
     return (
         <div className='max-w-7xl mx-auto px-4 py-10'>

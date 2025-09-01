@@ -2,7 +2,7 @@ export const themes = [
     {
         id: "theme-nostalgic",
         name: "Nostalgic",
-        className: " bg-yellow-100 text-gray-800;"
+        className: " bg-yellow-100 text-yellow-800 border-yellow-400"
     },
     {
         id: "theme-futuristic",
@@ -12,7 +12,7 @@ export const themes = [
     {
         id: "theme-playful",
         name: "Playful",
-        className: "bg-pink-100 text-pink-800"
+        className: "bg-pink-100 text-pink-800 border-pink-400"
     },
     {
         id: "theme-minimal",
@@ -22,6 +22,6 @@ export const themes = [
     {
         id: "theme-dark",
         name: "Dark",
-        className: "bg-gray-900 text-white;"
+        className: "bg-gray-900 text-white"
     }
 ];

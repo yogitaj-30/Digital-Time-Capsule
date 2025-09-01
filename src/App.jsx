@@ -12,26 +12,33 @@ import Footer from './components/Footer'
 
 function App() {
   return (
-    <>
+    <div className='flex flex-col min-h-screen'>
       <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/create' element={
-          <PrivateRoute>
-            <CreateCapsule />
-          </PrivateRoute>
-        } />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/dashboard' element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        } />
-        <Route path='/capsule/:id' element={<CapsuleDetails />} />
-      </Routes>
+      <main className='flex-grow'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route
+            path='/create'
+            element={
+              <PrivateRoute>
+                <CreateCapsule />
+              </PrivateRoute>
+            }
+          />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route
+            path='/dashboard'
+            element={
+              <PrivateRoute>
+                <Dashboard className="flex-grow" />
+              </PrivateRoute>
+            } />
+          <Route path='/capsule/:id' element={<CapsuleDetails />} />
+        </Routes>
+      </main>
       <Footer />
-    </>
+    </div>
   )
 }
 

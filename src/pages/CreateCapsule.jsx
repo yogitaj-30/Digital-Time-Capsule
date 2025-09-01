@@ -77,93 +77,102 @@ function CreateCapsule() {
     return (
         <form
             onSubmit={handleSubmit}
-            className='bg-white shadow-lg rounded-lg p-6 max-w-screen-lg mx-auto mt-10'
+            className="relative bg-gradient-to-br from-indigo-50 via-purple-100 to-pink-50 shadow-xl rounded-2xl p-8 max-w-screen-lg mx-auto mt-20 backdrop-blur-lg border border-white/40"
         >
-            <h2 className='text-xl font-semibold mb-4 text-center'>Create Time Capsule</h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-4'>
+            <h2 className="text-3xl font-extrabold mb-8 text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-md">
+                Create Time Capsule ✨
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                 <div>
-                    <label className='block text-sm text-gray-700 mb-1'>Title</label>
+                    <label className="block text-lg font-medium text-gray-700 mb-2">Title</label>
                     <input
                         type="text"
-                        name='title'
-                        placeholder='Capsule Title'
+                        name="title"
+                        placeholder="Capsule Title"
                         value={formData.title}
                         onChange={handleChange}
-                        className='w-full mb-4 px-4 py-2 border border-gray-300 rounded-md'
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-400 focus:outline-none"
                         required
                     />
                 </div>
+
                 <div>
-                    <label className='block text-sm text-gray-700 mb-1'>Unlock date:</label>
+                    <label className="block text-lg font-medium text-gray-700 mb-2">Unlock Date</label>
                     <input
                         type="date"
                         name="unlockDate"
                         value={formData.unlockDate}
                         onChange={handleChange}
-                        className='w-full mb-4 px-4 py-2 border border-gray-300 rounded-md'
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none"
                         required
                     />
                 </div>
+
                 <div>
-                    <label className='block text-sm text-gray-700 mb-1'>Cover Image(optional)</label>
+                    <label className="block text-lg font-medium text-gray-700 mb-2">Cover Image</label>
                     <input
                         type="file"
-                        accept='image/*'
+                        accept="image/*"
                         onChange={handleCoverChange}
-                        className='w-full mb-4 px-4 py-2 border border-gray-300 rounded-md'
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-indigo-200 file:text-indigo-700 hover:file:bg-indigo-100"
                     />
                 </div>
+
                 <div>
-                    <label className='block text-sm text-gray-700 mb-1'>Memories</label>
+                    <label className="block text-lg font-medium text-gray-700 mb-2">Memories</label>
                     <input
                         type="file"
-                        accept='image/*, video/*'
+                        accept="image/*, video/*"
                         multiple
                         onChange={handleFileChange}
-                        className='w-full mb-4 px-4 py-2 border border-gray-300 rounded-md'
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-pink-200 file:text-pink-700 hover:file:bg-pink-100"
                         required
                     />
                 </div>
             </div>
 
-
-            <div className='mb-4'>
-                <label className='block text-sm text-gray-700 mb-1'>Message</label>
-                <textarea name="message"
-                    placeholder='Write your memory, thoughts or prediction...'
+            <div className="mb-6">
+                <label className="block text-lg font-medium text-gray-700 mb-2">Message</label>
+                <textarea
+                    name="message"
+                    placeholder="Write your memory, thoughts or prediction..."
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className='w-full mb-4 px-4 py-2 border border-gray-300 rounded-md'
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-pink-400 focus:outline-none"
                     required
                 />
             </div>
-            <div className='mb-6'>
-                <label className='block text-sm text-gray-700 mb-1'>Capsule Theme</label>
-                <div className='grid grid-cols-2 gap-4 mb-4'>
+
+            <div className="mb-8">
+                <label className="block text-lg font-medium text-gray-700 mb-4">Capsule Theme</label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
                     {themes.map((theme) => (
                         <div
                             key={theme.id}
                             onClick={() => setSelectedTheme(theme.id)}
-                            className={`cursor-pointer rounded-md p-4 border-2 transition-all duration-300 
-                            ${theme.className} ${selectedTheme === theme.id ?
-                                    "ring-2 ring-indigo-500" :
-                                    "opacity-80 hover:opacity-100"}      
-                            `}
+                            className={`cursor-pointer rounded-xl p-5 border-2 transition-all duration-300 transform hover:scale-105 ${theme.className} ${selectedTheme === theme.id
+                                ? "ring-4 ring-purple-400 shadow-lg"
+                                : "opacity-80 hover:opacity-100"
+                                }`}
                         >
-                            <p className='font-semibold text-center'>{theme.name}</p>
+                            <p className="font-semibold text-center drop-shadow-md">
+                                {theme.name}
+                            </p>
                         </div>
                     ))}
                 </div>
             </div>
+
             <button
-                type='submit'
+                type="submit"
                 disabled={loading}
-                className="w-full py-2 px-4 bg-indigo-600 text-white font-bold rounded-md hover:bg-indigo-700"
+                className="w-full py-3 px-6 bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 text-white font-bold rounded-lg shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 disabled:opacity-70"
             >
                 {loading ? "Saving..." : "Save Capsule"}
             </button>
-        </form >
+        </form>
     )
 }
 
