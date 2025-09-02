@@ -7,7 +7,7 @@ export const themes = [
     {
         id: "theme-futuristic",
         name: "Futuristic",
-        className: "bg-gradient-to-r from-blue-800 to-purple-700 text-white"
+        className: "bg-gradient-to-br from-purple-600 via-indigo-300 to-black text-purple-600"
     },
     {
         id: "theme-playful",

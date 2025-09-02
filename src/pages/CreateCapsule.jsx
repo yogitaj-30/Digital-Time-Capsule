@@ -13,6 +13,7 @@ function CreateCapsule() {
     const [formData, setFormData] = useState({
         title: "",
         message: "",
+        prediction: "",
         unlockDate: ""
     })
 
@@ -36,7 +37,7 @@ function CreateCapsule() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { title, message, unlockDate } = formData;
+        const { title, message, prediction, unlockDate } = formData;
 
         if (!title || !message || mediaFiles.length == 0 || !unlockDate) {
             Swal.fire("All fields are required!", "", "error");
@@ -46,6 +47,7 @@ function CreateCapsule() {
 
         try {
             const mediaUrls = await uploadToCloudinary(mediaFiles);
+            console.log(mediaUrls);
             let coverImg = null;
             if (cover) {
                 coverImg = await uploadCoverImage(cover);
@@ -55,6 +57,7 @@ function CreateCapsule() {
             await addDoc(collection(db, "users", currentUserId, "capsules"), {
                 title,
                 message,
+                prediction,
                 coverImage: coverImg,
                 media: mediaUrls,
                 unlockDate: new Date(unlockDate),
@@ -65,6 +68,7 @@ function CreateCapsule() {
             Swal.fire("Capsule Saved Successfully!", "", "success");
             setFormData({
                 title: "",
+                prediction: "",
                 message: "",
                 unlockDate: ""
             })
@@ -85,7 +89,7 @@ function CreateCapsule() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                 <div>
-                    <label className="block text-lg font-medium text-gray-700 mb-2">Title</label>
+                    <label className="block text-lg font-medium text-gray-700 mb-2">Title<span className='text-red-600'>*</span></label>
                     <input
                         type="text"
                         name="title"
@@ -98,7 +102,7 @@ function CreateCapsule() {
                 </div>
 
                 <div>
-                    <label className="block text-lg font-medium text-gray-700 mb-2">Unlock Date</label>
+                    <label className="block text-lg font-medium text-gray-700 mb-2">Unlock Date<span className='text-red-600'>*</span></label>
                     <input
                         type="date"
                         name="unlockDate"
@@ -110,7 +114,7 @@ function CreateCapsule() {
                 </div>
 
                 <div>
-                    <label className="block text-lg font-medium text-gray-700 mb-2">Cover Image</label>
+                    <label className="block text-lg font-medium text-gray-700 mb-2">Cover Image<span className='text-red-600'>*</span></label>
                     <input
                         type="file"
                         accept="image/*"
@@ -120,7 +124,7 @@ function CreateCapsule() {
                 </div>
 
                 <div>
-                    <label className="block text-lg font-medium text-gray-700 mb-2">Memories</label>
+                    <label className="block text-lg font-medium text-gray-700 mb-2">Memories<span className='text-red-600'>*</span></label>
                     <input
                         type="file"
                         accept="image/*, video/*"
@@ -133,7 +137,7 @@ function CreateCapsule() {
             </div>
 
             <div className="mb-6">
-                <label className="block text-lg font-medium text-gray-700 mb-2">Message</label>
+                <label className="block text-lg font-medium text-gray-700 mb-2">Message<span className='text-red-600'>*</span></label>
                 <textarea
                     name="message"
                     placeholder="Write your memory, thoughts or prediction..."
@@ -142,6 +146,18 @@ function CreateCapsule() {
                     rows={4}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-pink-400 focus:outline-none"
                     required
+                />
+            </div>
+
+            <div className="mb-6">
+                <label className="block text-lg font-medium text-gray-700 mb-2">Prediction</label>
+                <textarea
+                    name="prediction"
+                    placeholder="Write your memory, thoughts or prediction..."
+                    value={formData.prediction}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-pink-400 focus:outline-none"
                 />
             </div>
 
@@ -164,7 +180,7 @@ function CreateCapsule() {
                     ))}
                 </div>
             </div>
-
+            {loading && <p className='text-orange-500 font-semibold text-center pb-4'>Saving the capsule might take 2-3 minutes.</p>}
             <button
                 type="submit"
                 disabled={loading}
