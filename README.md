@@ -1,8 +1,8 @@
-# Time Capsule Project
+# Digital Time Capsule Project
 
 ## Introduction
 
-Time Capsule is a web application that allows users to preserve their memories and thoughts by creating digital time capsules. Users can upload images, videos, and messages, select an unlock date in the future, and personalize their capsules with themes and cover images. This project aims to create a nostalgic and meaningful experience for users by allowing them to revisit their past at a chosen future date.
+Digital Time Capsule is a web application that allows users to preserve their memories and thoughts by creating digital time capsules. Users can upload images, videos, and messages, select an unlock date in the future, and personalize their capsules with themes and cover images. This project aims to create a nostalgic and meaningful experience for users by allowing them to revisit their past at a chosen future date.
 
 ## Project Type
 
